@@ -1,0 +1,3 @@
+death_count = 0
+win_count = 0
+room_name = dodge

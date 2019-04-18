@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
+<h1> Game: {{game}}</h1>
 <h1> Score: </h1>
 
 {% if win_count > 1 %}
-    <p>You won {{win_count}} times</p>
+    You won {{win_count}} times</p>
 {% else %}
     <p>You won {{win_count}} time</p>
 {% endif %}
@@ -16,7 +16,7 @@
     <p>You died {{death_count}} time</p>
 {% endif %}
 
-<p>Current place: {{room_name}}</p>
+<p>Current place: {{room.name}}</p>
 
 <p></p><b><a href = '/game'>Click here to come back to the game</a></b></p>
 

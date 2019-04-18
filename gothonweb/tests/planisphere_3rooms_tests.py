@@ -1,5 +1,5 @@
 from nose.tools import *
-from planisphere import *
+from planisphere_3rooms import *
 
 
 def test_room():
@@ -31,27 +31,26 @@ def test_map():
     assert_equal(start.go('west').go('east'), start)
     assert_equal(start.go('down').go('up'), start)
 
-def test_gothon_game_map():
+def test_3rooms_game_map():
     start_room = load_room(START)
-    assert_equal(start_room, central_corridor)
-    assert_equal(central_corridor.go('shoot!'), shoot)
-    assert_equal(central_corridor.go('dodge!'), dodge)
-    assert_equal(central_corridor.go('tell a joke'), laser_weapon_armory)
+    assert_equal(start_room, start_place)
+    assert_equal(start_place.go('yes'), door_pick)
+    assert_equal(start_place.go('something else'), None)
     
-    assert_equal(the_bridge.go('throw the bomb'), throw_the_bomb)
-    assert_equal(the_bridge.go('slowly place the bomb'), escape_pod)
+    assert_equal(door_pick.go('1'), door_1)
+    assert_equal(door_pick.go('2'), door_2)
 
-    assert_equal(laser_weapon_armory.go('0132'), the_bridge)
-    assert_equal(laser_weapon_armory.go('wrong_code'), wrong_code)
+    assert_equal(door_1.go('exit'), next_pick)
+    assert_equal(door_3.go('stay'), None)
 
-    assert_equal(escape_pod.go('2'), the_end_winner)
-    assert_equal(escape_pod.go('wrong_pod'), wrong_pod)
+    assert_equal(next_pick.go('leave'), the_end)
+    assert_equal(next_pick.go('visit'), door_pick)
 
 def test_name_room():
-    assert_equal(name_room(central_corridor), 'central_corridor')
+    assert_equal(name_room(start_place), 'start_place')
     assert_raises(Exception, name_room, 'something')
 
 def test_load_room():
     assert_raises(Exception, load_room, 'something')
-    assert_equal(dodge, load_room('dodge'))
+    assert_equal(door_pick, load_room('door_pick'))
    

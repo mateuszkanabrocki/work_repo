@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<p></p><b><a href = '/logout'>Click here to logout.</a></b></p>
+<p></p><b><a href = '/game'>Click here to come back to the game.</a></b></p>
+
+<h1> Type the game name from the list below:</h1>
+<p> - gothonweb </p>
+<p> - 3rooms </p>
+
+    <p>
+    <form action="/change_a_game" method="POST">
+        <input type="text" name="game_name"> <input type="SUBMIT">
+    </form>
+    </p>
+
+<span title=''>(hidden help)</span>
+{% endblock %}

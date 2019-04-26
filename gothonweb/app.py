@@ -95,13 +95,16 @@ def choose_a_game():
 def change_a_game():
     # load a map(planisphere)
     game_name = request.form.get('game_name')
+    print('game_name', game_name)
     session['game'] = game_name
 
     game_file_name = f"planisphere_{game_name}.py"
     game_file_name = game_file_name.replace(" ", "")
+    print('game_file_name', game_file_name)
 
     lexis_file_name = f"lexis_{game_name}.py"
     lexis_file_name = lexis_file_name.replace(" ", "")
+    print('lexis_file_name', lexis_file_name)
 
     try:
         copyfile(game_file_name, 'planisphere.py')

@@ -1,0 +1,2 @@
+include gothonweb/sessions/*
+include gothonweb/templates/*

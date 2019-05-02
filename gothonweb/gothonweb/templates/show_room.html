@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<p></p><b><a href = '/logout'>Click here to logout.</a></b></p>
+<p></p><b><a href = '/score'>Click here to check your score.</a></b></p>
+<p></p><b><a href = '/choose_a_game'>Click here to change the game.</a></b>
+
+<h1> {{ room.name }}  </h1>
+
+<pre>
+{{ room.description }}
+</pre>
+
+{% if room.name in ["Death", "Happy Ending"] %}
+    <p><a href="/nextgame">Play Again?</a></p>
+{% else %}
+    <p>
+    <form action="/game" method="POST">
+        <input type="text" name="action"> <input type="SUBMIT">
+    </form>
+    </p>
+    
+{% endif %}
+
+<span title=''>(hidden help)</span>
+{% endblock %}

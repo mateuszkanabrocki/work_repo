@@ -1,0 +1,3 @@
+death_count = 7
+win_count = 1
+room_name = start_place

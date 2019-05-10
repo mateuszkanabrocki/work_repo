@@ -209,11 +209,11 @@ def name_room(room):
                   'the_end_winner', 'wrong_pod', 'generic_death', 'throw_the_bomb',
                   'shoot', 'dodge', 'wrong_code')
 
-    # give room object get room name
+    # give room object, get room name
     for key, value in globals().items():
         if value == room and key in white_list:
             return key
 
-    raise Exception(f'You can\'t run name_room with {name} as a parameter.')
+    raise Exception(f'You can\'t run name_room with {room} as a parameter.')
 
 

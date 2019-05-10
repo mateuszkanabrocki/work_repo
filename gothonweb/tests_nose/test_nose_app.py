@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append('/home/mateusz/python_repo/working_repo/gothonweb/gothonweb')
+
 from nose.tools import assert_equal, assert_in
 from app import app, load_session, save_session
 import planisphere_gothonweb
@@ -21,7 +25,8 @@ gothonweb_path = linux_gothonweb_path  # change depending on gothonweb directory
 
 
 def test_1adefault_setup():
-    copyfile('planisphere_gothonweb.py', 'planisphere.py')
+    copyfile('/home/mateusz/python_repo/working_repo/gothonweb/gothonweb/planisphere_gothonweb.py',
+             '/home/mateusz/python_repo/working_repo/gothonweb/gothonweb/planisphere.py')
     try:
         delete_file('new_user', gothonweb_path)
         delete_file('test_gothonweb', gothonweb_path)
@@ -62,7 +67,7 @@ def test_log_in():
     assert_in(b"Login", rv.data)
 
 
-def test_log_in():
+def test_log_in2():
     with app.test_client() as web:
         rv = web.get('/login', follow_redirects=True)
         data = {'username': 'test'}

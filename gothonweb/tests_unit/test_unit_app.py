@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append('/home/mateusz/python_repo/working_repo/gothonweb/gothonweb')
+
 import unittest
 from app import app, load_session, save_session
 import planisphere_gothonweb
@@ -23,7 +27,8 @@ gothonweb_path = linux_gothonweb_path  # change depending on gothonweb directory
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        copyfile('planisphere_gothonweb.py', 'planisphere.py')
+        copyfile('/home/mateusz/python_repo/working_repo/gothonweb/gothonweb/planisphere_gothonweb.py',
+                 '/home/mateusz/python_repo/working_repo/gothonweb/gothonweb/planisphere.py')
         try:
                 delete_file('new_user', gothonweb_path)
                 delete_file('test_gothonweb', gothonweb_path)
@@ -287,7 +292,6 @@ class TestApp(unittest.TestCase):
                 load_session('new_user')
                 file_exists = exists(f'{gothonweb_path}/gothonweb/sessions/new_user_gothonweb.txt')
                 assert file_exists
-
                 delete_file('new_user_gothonweb', gothonweb_path)
                 delete_file('test_gothonweb', gothonweb_path)
                 rv = web.get('/logout', follow_redirects=True)

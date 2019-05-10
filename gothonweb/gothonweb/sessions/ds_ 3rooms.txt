@@ -1,3 +1,0 @@
-death_count = 1
-win_count = 0
-room_name = door_pick

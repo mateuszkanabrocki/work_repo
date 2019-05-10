@@ -1,10 +1,12 @@
 import sys
 import os
-sys.path.append('/home/mateusz/python_repo/working_repo/gothonweb/gothonweb')
+this_module = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(this_module, '../gothonweb/'))
 
 import unittest
 from app import app, load_session, save_session
 import planisphere_gothonweb
+from planisphere_gothonweb import planisphere_gothonweb_path
 from flask import Flask, session
 from os.path import exists
 from shutil import copyfile
@@ -16,24 +18,19 @@ app.config['TESTING'] = True
 # make requests to the app without running the server
 web = app.test_client()
 
-# NOSETESTS SETUP DATA
-windows_gothonweb_path = 'c:/windows/system32/projects'
-linux_gothonweb_path = '/home/mateusz/python_repo/working_repo'
-gothonweb_path = linux_gothonweb_path  # change depending on gothonweb directory location on your PC
+gothonweb_path = os.path.join(os.path.dirname(__file__), '../..')
+planisphere_path = os.path.join(os.path.dirname(__file__), '../gothonweb/planisphere')
 
-# In case of nosetests errors try to run nosetests twice
-# it will make a default game setup so tests can run properly.
 
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        copyfile('/home/mateusz/python_repo/working_repo/gothonweb/gothonweb/planisphere_gothonweb.py',
-                 '/home/mateusz/python_repo/working_repo/gothonweb/gothonweb/planisphere.py')
+        copyfile(planisphere_gothonweb_path, planisphere_path)
         try:
-                delete_file('new_user', gothonweb_path)
-                delete_file('test_gothonweb', gothonweb_path)
+            delete_file('new_user', gothonweb_path)
+            delete_file('test_gothonweb', gothonweb_path)
         except:
-                pass
+            pass
 
     def tearDown(self):
         pass
@@ -290,7 +287,7 @@ class TestApp(unittest.TestCase):
                 data = {'username': 'test'}
                 rv = web.post('/login', follow_redirects=True, data=data)
                 load_session('new_user')
-                file_exists = exists(f'{gothonweb_path}/gothonweb/sessions/new_user_gothonweb.txt')
+                file_exists = exists(f'{gothonweb_path}/gothonweb/gothonweb/sessions/new_user_gothonweb.txt')
                 assert file_exists
                 delete_file('new_user_gothonweb', gothonweb_path)
                 delete_file('test_gothonweb', gothonweb_path)
@@ -302,7 +299,7 @@ class TestApp(unittest.TestCase):
                 data = {'username': 'test'}
                 rv = web.post('/login', follow_redirects=True, data=data)
                 load_session('new_user')
-                file_name = f'{gothonweb_path}/gothonweb/sessions/new_user_gothonweb.txt'
+                file_name = f'{gothonweb_path}/gothonweb/gothonweb/sessions/new_user_gothonweb.txt'
                 with open(file_name, "r") as file:
                         file_lines = file.readlines()
                         self.assertEqual(file_lines[0], 'death_count = 0\n')

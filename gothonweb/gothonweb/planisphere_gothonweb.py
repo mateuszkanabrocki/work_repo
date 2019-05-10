@@ -1,13 +1,12 @@
+import sys
+import os
+this_module = os.path.dirname(os.path.realpath(__file__))
+planisphere_gothonweb_path = os.path.join(this_module, __file__)
+
 direction = []
 do = ['shoot', 'dodge', 'hit', 'kick', 'tell', 'throw', 'place', 'leave', 'kill']
 stop = ['the', 'in', 'of', 'from', 'at', 'it', 'a', 'him']
 noun = ['joke', 'bomb', 'gothon']
-# dictionary = [do, stop, noun]
-
-# class dictionary(object):
-#     do = ['shoot', 'dodge', 'hit', 'kick', 'tell', 'throw', 'place', 'leave', 'kill']
-#     stop = ['the', 'in', 'of', 'from', 'at', 'it', 'a', 'him']
-#     noun = ['joke', 'bomb', 'gothon'] 
 
 class Room(object):
 

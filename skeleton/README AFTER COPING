@@ -1,0 +1,12 @@
+READ AFTER COPING
+------------------
+
+Things to set:
+1) change skeleton dir name to your project name
+2) MANIFEST.in -> include paths to folders with other files (session files, templates etc.) - these files will be included in distributions
+3) change skeleton/NAME name into your project name
+4) setup.py -> change NAME (name='NAME' and packages=['NAME']) into your project/main module name
+5) setup.py -> add description (description='DESCRIPTION')
+6) setup.py -> add any install requirements (install_requires=['nose'])
+7) setup.py -> add url and download_url adresses ('https://github.com/mateuszkanabrocki/projects/tree/master/?')
+8) change skeleton/tests/NAME_tests.py NAME into your main or other modules

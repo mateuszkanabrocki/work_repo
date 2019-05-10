@@ -3,20 +3,18 @@ try:
 except ImportError:
     from distutils.core import setup
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
 
 setup(
-    name='gothonweb',
+    name='NAME',
     version='1.0',
-    description='Simple text-based game run in the web browser.',
+    description='DESCRIPTION',
     author='Mateusz Kanabrocki',
     author_email='mateusz.kanabrocki@gmail.com',
-    packages=['gothonweb'],  #same as name
+    packages=['NAME'],  #same as name
     install_requires=['nose'], #external packages as dependencies
+    url='https://github.com/mateuszkanabrocki/projects/tree/master/?',
+    download_url='https://github.com/mateuszkanabrocki/projects/tree/master/?',
+    include_package_data=True #include MANIFEST.in file
     # 'py_modules': ['MODULE_NAME'],
     # 'scripts': [],
 )

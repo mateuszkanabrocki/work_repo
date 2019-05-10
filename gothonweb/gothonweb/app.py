@@ -1,8 +1,12 @@
+import sys
+import os
 from flask import Flask, session, redirect, url_for, escape, request
 from flask import render_template
 from flask import make_response
 from os.path import exists
 from shutil import copyfile
+this_module = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(this_module, '../gothonweb/'))
 
 import planisphere
 import lexis
@@ -13,10 +17,10 @@ app = Flask(__name__)
 
 def load_session(username):
     if session.get('game'):
-        file_name = f"sessions/{username}_{session.get('game')}.txt"
+        pass
     else:
         session['game'] = 'gothonweb'
-        file_name = f"sessions/{username}_{session.get('game')}.txt"
+    file_name = os.path.join(os.path.dirname(__file__), f"sessions/{username}_{session.get('game')}.txt")
     user_exists = exists(file_name)
     # create a user cookies file
     if not user_exists:
@@ -28,18 +32,17 @@ def load_session(username):
         session['win_count'] = int(file.readline().strip().strip('win_count = '))
         session['room_name'] = file.readline().strip().replace('room_name = ', '')
 
-
 def save_session(username, game, death_count, win_count, room_name):
     # read the session file data
     try:
-        with open(f"sessions/{username}_{game}.txt", "r") as file:
+        with open(os.path.join(os.path.dirname(__file__), f"sessions/{username}_{game}.txt"), "r") as file:
             line_list = [file.readline(), file.readline(), file.readline()]
             line_list[0] = f"death_count = {death_count}\n"
             line_list[1] = f"win_count = {win_count}\n"
             line_list[2] = f"room_name = {room_name}"
             new_lines = ''.join(line_list)
         # make a new session file
-        with open(f"sessions/{username}_{game}.txt", "w") as file:
+        with open(os.path.join(os.path.dirname(__file__), f"sessions/{username}_{game}.txt"), "w") as file:
             file.write(new_lines)
     except:
         load_session(session['username'])
@@ -96,18 +99,21 @@ def change_a_game():
     # load a map(planisphere)
     game_name = request.form.get('game_name')
     session['game'] = game_name
-    print('session[game]', session['game'])
+
     game_file_name = f"planisphere_{game_name}.py"
     game_file_name = game_file_name.replace(" ", "")
 
     lexis_file_name = f"lexis_{game_name}.py"
     lexis_file_name = lexis_file_name.replace(" ", "")
-    print('game_file_name', game_file_name)
-    print('lexis_file_name', lexis_file_name)
+
+    new_planisphere_path = os.path.join(os.path.dirname(__file__), game_file_name)
+    planisphere_path = os.path.join(os.path.dirname(__file__), 'planisphere.py')
+    new_lexis_path = os.path.join(os.path.dirname(__file__), lexis_file_name)
+    lexis_path = os.path.join(os.path.dirname(__file__), 'lexis.py')
 
     try:
-        copyfile(game_file_name, 'planisphere.py')
-        copyfile(lexis_file_name, 'lexis.py')
+        copyfile(new_planisphere_path, planisphere_path)
+        copyfile(new_lexis_path, lexis_path)
     except:
         return render_template("choose_a_game.html")
 

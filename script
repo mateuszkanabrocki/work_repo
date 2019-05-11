@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+import webbrowser
+
+webbrowser.open('https://google.pl', new=1)

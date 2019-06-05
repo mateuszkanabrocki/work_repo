@@ -2,3 +2,31 @@
 import webbrowser
 
 webbrowser.open('https://google.pl', new=1)
+
+
+# #!/usr/bin/env python
+# #!/usr/bin/python
+
+# <-path to the interpreter
+
+# Finally, to execute a script like this one,
+# you need to assign execution permissions to it
+# and then type in the filename at the command-line.
+
+# $ # Assign execution permissions
+# $ chmod +x hello.py
+# $ # Run the script by using its filename
+# $ ./hello.py
+
+# Finally, you need to note that if your script isn’t located
+# at your current working directory, you’ll have to
+# use the file path for this method to work correctly.
+# alis pop execute and pull back
+
+
+# On Unix-like systems, you’ll probably be able to run your scripts
+# by double-clicking on them in your file manager.
+# To achieve this, your script must have execution permissions,
+# and you’ll need to use the shebang trick you’ve already seen.
+# Likewise, you may not see any results on screen when it comes
+# to command-line interface scripts.

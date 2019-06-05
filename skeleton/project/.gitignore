@@ -1,0 +1,5 @@
+.vscode/
+__pycache__/
+trash/
+.mypy_cache
+
